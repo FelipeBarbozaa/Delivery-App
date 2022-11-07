@@ -80,4 +80,18 @@
    - Pode se cadastrar, onde terá que ativar seu cadastro por um link enviado no email...Assim que ativado, será redirecionado à pagina principal de cliente já logado.
    - Pode criar um pedido.
    - Pode ver todos os seus pedidos e os detalhes de cada um, onde mostra algumas informações como o status daquele pedido.
+   - Pode confirmar o recebimento do pedido, atualizando seu status para "Entegue".
+  
+    <strong>Vendedor</strong>
+
+   - Terá acesso apenas ao fluxo do vendedor.
+   - Pode ver todas as suas vendas realizadas.
+   - Pode ver os detalhes de uma venda, onde consegue atualizar o status dos pedidos para "Preparando" e "Em Trânsito".
+  
+    <strong>Administrador</strong>
+  
+   - Terá acesso apenas ao fluxo do administrador.
+   - Consegue ver todos os cadastros do sistema.
+   - Pode criar novos usuários (incluindo vendedores e administradores), sem precisar de ativação via email.
+   - Pode apagar o cadastro de qualquer pessoa.
 </details>
