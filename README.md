@@ -111,7 +111,7 @@
     <strong>🌐 Acessar o projeto online</strong>
   </summary><br>
 
-  https://delivery-app-deploy.vercel.app/
+  <a target="_blank">https://delivery-app-deploy.vercel.app/</a>
   
   <strong>Colocando a aplicação em 360x640</strong>
   
