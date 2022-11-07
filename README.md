@@ -82,16 +82,24 @@
    - Pode ver todos os seus pedidos e os detalhes de cada um, onde mostra algumas informações como o status daquele pedido.
    - Pode confirmar o recebimento do pedido, atualizando seu status para "Entegue".
   
-    <strong>Vendedor</strong>
+  <strong>Vendedor</strong>
 
    - Terá acesso apenas ao fluxo do vendedor.
    - Pode ver todas as suas vendas realizadas.
    - Pode ver os detalhes de uma venda, onde consegue atualizar o status dos pedidos para "Preparando" e "Em Trânsito".
   
-    <strong>Administrador</strong>
+  <strong>Administrador</strong>
   
    - Terá acesso apenas ao fluxo do administrador.
    - Consegue ver todos os cadastros do sistema.
    - Pode criar novos usuários (incluindo vendedores e administradores), sem precisar de ativação via email.
    - Pode apagar o cadastro de qualquer pessoa.
+  
+  <strong>Aplicação em geral</strong>
+  
+   - Mensagens de erros customizadas na hora do cadastro para ajudar o cliente no preenchimento do formulário.
+   - Rotas protegidas no Front-end.
+   - Requisições para API protegidas, como por exemplo, apenas um usuário administrador pode apagar um cadastro.
+   - Geração de token para manter o usuário logado e fazer requisições seguras, sem manipulação de dados. 
+   - Algumas informações são salvas no localStorage, como o carrinho na tela /customer/products, com o propósito de manter os produtos no carrinho caso o cliente saia da página.
 </details>
