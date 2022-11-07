@@ -103,3 +103,24 @@
    - Geração de token para manter o usuário logado e fazer requisições seguras, sem manipulação de dados. 
    - Algumas informações são salvas no localStorage, como o carrinho na tela /customer/products, com o propósito de manter os produtos no carrinho caso o cliente saia da página.
 </details>
+
+<details>
+  <summary>
+    <strong>🌐 Acessar o projeto online</strong>
+  </summary><br>
+
+  https://delivery-app-deploy.vercel.app/
+  
+  <strong>Colocando a aplicação em 360x640</strong>
+  
+    1) Abra o link
+    2) Aperte F12
+    3) Aperte Ctrl + Shift + M
+    4) coloque em 360x640
+</details>
+
+<details>
+  <summary>
+    <strong>💻 Como clonar e rodar o projeto na máquina</strong>
+  </summary><br>
+</details>
