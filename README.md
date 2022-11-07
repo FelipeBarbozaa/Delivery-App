@@ -1,3 +1,5 @@
+# Boas vindas ao repositório do projeto App de Delivery!
+
 <details>
   <summary>
     <strong>:memo: Sobre o projeto</strong>
