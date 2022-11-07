@@ -125,6 +125,7 @@
   </summary><br>
   
   Desenvolvido com:
+  
     - node v16.17.1
     - docker v20.10.18
     - docker-compose v2.5.0
