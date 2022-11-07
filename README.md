@@ -123,4 +123,33 @@
   <summary>
     <strong>💻 Como clonar e rodar o projeto na máquina</strong>
   </summary><br>
+  
+  Desenvolvido com:
+    - node v16.17.1
+    - docker v20.10.18
+    - docker-compose v2.5.0
+    - npm v8.15.0
+  
+  1- Clone o repositório: 
+  
+  <code>git clone git@github.com:FelipeBarbozaa/Delivery-App.git</code>
+  
+  2- Entre na pasta Delivery-app
+  
+  3- Instale as dependências do front:
+  
+  <code>npm run prestart:front </code>
+  
+  4- Instale as dependências do back:
+  
+  <code>npm run prestart:back </code>
+  
+  5- Rode os containers docker:
+  
+  <code>npm run compose:up</code>
+  
+  6- Rode as seeds para gerar o banco de dados
+  
+  <code>npm run db:reset</code>
+
 </details>
