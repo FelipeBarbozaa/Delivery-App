@@ -8,6 +8,8 @@
   - Tive a experiência de fazê-lo com outros 3 estudantes, porém decidi recriá-lo sozinho adicionando Docker, TypeScript e POO com o intúito de praticar.
   
   - O projeto contém 3 tipos de autenticação (usuário, vendedor e administrador), contando com proteção para essas rotas no front e back.
+  
+  - Desenvolvido apenas para tela 360x640
 </details>
   
 <details>
@@ -65,4 +67,17 @@
   <strong>Fluxo do administrador</strong>
 
   - Tela de gerenciamento de usuários: /admin/manage;
+</details>
+
+<details>
+  <summary>
+    <strong>:gear: Funcionalidades </strong>
+  </summary><br>
+  
+  <strong>Cliente</strong>
+
+   - Terá acesso apenas ao fluxo do cliente.
+   - Pode se cadastrar, onde terá que ativar seu cadastro por um link enviado no email...Assim que ativado, será redirecionado à pagina principal de cliente já logado.
+   - Pode criar um pedido.
+   - Pode ver todos os seus pedidos e os detalhes de cada um, onde mostra algumas informações como o status daquele pedido.
 </details>
