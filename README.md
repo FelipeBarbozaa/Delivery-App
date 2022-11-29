@@ -156,3 +156,23 @@
   <code>npm run db:reset</code>
 
 </details>
+
+<details>
+  <summary>
+    <strong>:construction: Próximas features</strong>
+  </summary>
+
+  
+  
+   ❌ Refatorar todo o código
+  
+   ❌ Testes de intergração no back-end
+  
+   ❌ Testes unitários no back-end
+  
+   ❌ Testes E2E com cypress no front-end (vou aprender)
+  
+   ❌ Avaliar uma venda e ranquear os vendedores por quantidade de vendas ou nota
+  
+   ❌ Usar socket para atualizar o status do pedido em tempo real, sem precisar atualizar a página (vou aprender)
+</details>
