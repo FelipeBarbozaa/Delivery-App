@@ -20,17 +20,19 @@ export default function Login() {
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
     const validate = async () => {
-      const response = await validateToken(token);
-      if (response.result === true && role === 'customer') {
-        navigate('/customer/products');
-      }
+      if (token) {
+        const response = await validateToken(token);
+        if (response.result === true && role === 'customer') {
+          navigate('/customer/products');
+        }
 
-      if (response.result === true && token && role === 'seller') {
-        navigate('/seller/orders');
-      }
+        if (response.result === true && token && role === 'seller') {
+          navigate('/seller/orders');
+        }
 
-      if (response.result === true && token && role === 'administrator') {
-        navigate('/admin/manage');
+        if (response.result === true && token && role === 'administrator') {
+          navigate('/admin/manage');
+        }
       }
     };
     validate();
