@@ -17,7 +17,6 @@ const validateRouteToken = async (
     
     const decoded = jwt.verify(
       authorization, JWT_SECRET as string) as JwtPayload;
-    console.log(decoded);
 
     if (!decoded || decoded.type !== 'authentication') {
       return res.status(401).json({ message: 'Invalid or expired token' });
