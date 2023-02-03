@@ -20,7 +20,7 @@ module.exports = {
         delivery_address: 'Rua com nome',
         delivery_number: 50,
         sale_date: new Date(),
-        status: 'Preparando',
+        status: 'Pendente',
       },
       {
         id: 3,
@@ -30,7 +30,7 @@ module.exports = {
         delivery_address: 'Rua cu',
         delivery_number: 50,
         sale_date: new Date(),
-        status: 'Em Trânsito',
+        status: 'Pendente',
       },
       {
         id: 4,
@@ -40,7 +40,7 @@ module.exports = {
         delivery_address: 'Rua t nome',
         delivery_number: 50,
         sale_date: new Date(),
-        status: 'Entregue',
+        status: 'Pendente',
       },
     ]);
   },

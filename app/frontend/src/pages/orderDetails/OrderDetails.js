@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-max-depth */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import getSaleById from '../../api/saleById';
 import getSaleDetails from '../../api/saleDetails';
@@ -28,6 +29,12 @@ function OrderDetails() {
       return saleInfo;
     };
     getSale().then((response) => setSale(response));
+
+    const socket = io();
+    socket.on('update-status', (data) => {
+      // Envia a atualização para o canal exclusivo do usuário
+      console.log(data, '----------');
+    });
 
     const formater = (data) => {
       const newData = {

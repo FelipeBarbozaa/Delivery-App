@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-max-depth */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import socketIo from 'socket.io-client';
 import Header from '../../components/Header';
 import getSaleById from '../../api/saleById';
 import getSaleDetails from '../../api/saleDetails';
 import updateOrderStatus from '../../api/updateOrderStatus';
 import './teste.css';
+
+const socket = socketIo('http://localhost:3001');
 
 function SellerOrderDetails() {
   const EIGHT = 8;
@@ -13,11 +16,11 @@ function SellerOrderDetails() {
   const [date, setDate] = useState();
   const [sale, setSale] = useState([]);
   const [cart, setCart] = useState([]);
-  const [callback, setCallback] = useState(0);
   const dataTest = 'customer_order_details__element-order-';
   const { id } = useParams();
 
   const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('id');
   useEffect(() => {
     const getSale = async () => {
       const saleInfo = await getSaleById(token, id);
@@ -40,7 +43,7 @@ function SellerOrderDetails() {
       setCart(data);
     };
     saleDetails();
-  }, [id, token, callback]);
+  }, [id, token]);
 
   useEffect(() => {
     if (sale.length !== 0) {
@@ -51,10 +54,25 @@ function SellerOrderDetails() {
   }, [sale]);
 
   const updateOrder = async () => {
-    const result = await updateOrderStatus(token, id);
-    console.log(result);
-    setCallback(callback + 1);
+    await updateOrderStatus(token, id);
+    socket.emit('join_room', userId, id);
+    const statusNow = {
+      Pendente: 'Preparando',
+      Preparando: 'Em Trânsito',
+      'Em Trânsito': 'Entregue',
+    };
+
+    socket.emit('update_status', id, statusNow[sale.status]);
   };
+
+  useEffect(() => {
+    socket.on('status_updated', (newStatus) => {
+      console.log(newStatus);
+      setSale({ ...sale, status: newStatus });
+    });
+  }, [sale]);
+
+  // eslint-disable-next-line no-unused-vars
 
   return (
     (sale.length === 0 ? <h1>Nenhum pedido encontrado</h1>

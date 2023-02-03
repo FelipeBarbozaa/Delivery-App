@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import tryLogin from '../../api/login';
 import appContext from '../../context/AppContext';
+
 import loginLogo from '../../images/loginLogo.png';
 import validateToken from '../../api/validateToken';
 import { SIX } from '../../utils/numbers';
@@ -16,13 +17,14 @@ export default function Login() {
 
   const { saveUserInfo } = useContext(appContext);
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   useEffect(() => {
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
     const validate = async () => {
       if (token) {
         const response = await validateToken(token);
-        if (response.result === true && role === 'customer') {
+        if (response.result === true && token && role === 'customer') {
           navigate('/customer/products');
         }
 
@@ -50,6 +52,7 @@ export default function Login() {
 
     if (response.token) {
       saveUserInfo(response);
+      // eslint-disable-next-line no-unused-vars
       if (response.role === 'customer') {
         navigate('/customer/products');
       } else if (response.role === 'seller') {
