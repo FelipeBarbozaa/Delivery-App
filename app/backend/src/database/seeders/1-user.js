@@ -12,16 +12,16 @@ module.exports = {
       },
       {
         id: 2,
-        name: 'Náthaly Teixeira',
-        email: 'nathaly@gmail.com',
+        name: 'Felipe Vendedor',
+        email: 'vendedor@gmail.com',
         password: '25d55ad283aa400af464c76d713c07ad', // 12345678
         role: 'seller',
         active: true
       },
       {
         id: 3,
-        name: 'Lair Machado',
-        email: 'lair@gmail.com',
+        name: 'Felipe Cliente',
+        email: 'cliente@gmail.com',
         password: '25d55ad283aa400af464c76d713c07ad', // 12345678
         role: 'customer',
         active: true,

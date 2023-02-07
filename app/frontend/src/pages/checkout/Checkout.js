@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import socketIo from 'socket.io-client';
 import moment from 'moment';
 import Header from '../../components/Header';
 import postSaleApi from '../../api/postSale';
@@ -8,6 +9,8 @@ import getIdByName from '../../api/getIdByName';
 import postSaleProductApi from '../../api/postSaleProduct';
 import removeProduct from '../../images/removeProduct.png';
 import './style.css';
+
+const socket = socketIo('http://localhost:3001/');
 
 function Checkout() {
   const [price, setPrice] = useState(0);
@@ -64,8 +67,11 @@ function Checkout() {
       saleDate: moment().format('YYYY-MM-DD HH:mm:ss'),
       status: 'Pendente',
     };
+    console.log(sales, '-------------');
 
+    socket.emit('join_room_order', sales.sellerId);
     const { id: saleId } = await postSaleApi(token, sales);
+    socket.emit('create_order', { ...sales, id: saleId });
 
     const createSaleProductsBody = productsInfo.map(({ id, quantity }) => (
       {

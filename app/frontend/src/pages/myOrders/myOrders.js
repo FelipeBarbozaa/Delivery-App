@@ -15,7 +15,6 @@ function MyOrders() {
     const getSales = async () => {
       const token = localStorage.getItem('token');
       const id = localStorage.getItem('id');
-
       const sales = await getSalesByUserId(token, id);
       const newDate = sales.map(({ saleDate }) => {
         const [date1, date2] = saleDate.split('-');

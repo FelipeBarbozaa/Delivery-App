@@ -8,7 +8,7 @@ import getSaleDetails from '../../api/saleDetails';
 import updateOrderStatus from '../../api/updateOrderStatus';
 import './teste.css';
 
-const socket = socketIo('http://localhost:3001');
+const socket = socketIo('http://localhost:3001/');
 
 function SellerOrderDetails() {
   const EIGHT = 8;
@@ -20,7 +20,6 @@ function SellerOrderDetails() {
   const { id } = useParams();
 
   const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('id');
   useEffect(() => {
     const getSale = async () => {
       const saleInfo = await getSaleById(token, id);
@@ -46,6 +45,10 @@ function SellerOrderDetails() {
   }, [id, token]);
 
   useEffect(() => {
+    socket.emit('join_room_order_details', id);
+  }, [id]);
+
+  useEffect(() => {
     if (sale.length !== 0) {
       const [date1, date2] = sale.saleDate.split('-');
       const date3 = sale.saleDate.slice(EIGHT, TEN);
@@ -55,7 +58,6 @@ function SellerOrderDetails() {
 
   const updateOrder = async () => {
     await updateOrderStatus(token, id);
-    socket.emit('join_room', userId, id);
     const statusNow = {
       Pendente: 'Preparando',
       Preparando: 'Em Trânsito',
@@ -67,12 +69,9 @@ function SellerOrderDetails() {
 
   useEffect(() => {
     socket.on('status_updated', (newStatus) => {
-      console.log(newStatus);
       setSale({ ...sale, status: newStatus });
     });
   }, [sale]);
-
-  // eslint-disable-next-line no-unused-vars
 
   return (
     (sale.length === 0 ? <h1>Nenhum pedido encontrado</h1>

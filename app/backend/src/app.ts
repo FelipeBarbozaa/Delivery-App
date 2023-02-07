@@ -42,18 +42,20 @@ app.post('/validate', async (req, res, next) => {
   }
 });
 
-// eslint-disable-next-line sonarjs/no-unused-collection
-const users = [];
-
 io.on('connection', (socket) => {
-  socket.on('join_room', (userId, orderId) => {
+
+  socket.on('join_room_order_details', (orderId) => {
     socket.join(orderId);
-    users.push({ socketId: socket.id, userId });
+  });
+  socket.on('update_status', (orderId, status) => {
+    io.to(orderId).emit('status_updated', status);
   });
 
-  socket.on('update_status', (orderId, status) => {
-    console.log(status);
-    io.to(orderId).emit('status_updated', status);
+  socket.on('join_room_order', (id) => {
+    socket.join(id);
+  });
+  socket.on('create_order', (data) => {
+    io.to(data.sellerId).emit('order_created', data);
   });
 });
 
