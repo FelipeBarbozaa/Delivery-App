@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
@@ -56,6 +57,15 @@ io.on('connection', (socket) => {
   });
   socket.on('create_order', (data) => {
     io.to(data.sellerId).emit('order_created', data);
+  });
+
+  socket.on('join_order_group', () => {
+    console.log('entrou');
+    socket.join('orders');
+  });
+  socket.on('update_order', (orderId, newStatus) => {
+    console.log(orderId, newStatus);
+    io.to('orders').emit('order_updated', orderId, newStatus);
   });
 });
 

@@ -46,6 +46,7 @@ function SellerOrderDetails() {
 
   useEffect(() => {
     socket.emit('join_room_order_details', id);
+    socket.emit('join_order_group');
   }, [id]);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ function SellerOrderDetails() {
     };
 
     socket.emit('update_status', id, statusNow[sale.status]);
+    socket.emit('update_order', id, statusNow[sale.status]);
   };
 
   useEffect(() => {

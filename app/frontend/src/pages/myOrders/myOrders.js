@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import socketIo from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import './style.css';
 import getSalesByUserId from '../../api/salesByUserId';
+
+const socket = socketIo('http://localhost:3001/');
 
 function MyOrders() {
   const EIGHT = 8;
@@ -12,6 +15,7 @@ function MyOrders() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    socket.emit('join_order_group');
     const getSales = async () => {
       const token = localStorage.getItem('token');
       const id = localStorage.getItem('id');
@@ -26,6 +30,18 @@ function MyOrders() {
     };
     getSales().then((response) => setAllSales(response));
   }, []);
+
+  useEffect(() => {
+    socket.on('order_updated', (orderId, newStatus) => {
+      const newAllSales = allSales.map((order) => {
+        if (order.id === parseInt(orderId, 10)) {
+          return { ...order, status: newStatus };
+        }
+        return order;
+      });
+      setAllSales(newAllSales);
+    });
+  }, [allSales]);
 
   const redirectToOrder = (id) => {
     navigate(`/customer/orders/${id}`);

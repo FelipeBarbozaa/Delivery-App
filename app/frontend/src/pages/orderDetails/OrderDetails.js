@@ -72,6 +72,7 @@ function OrderDetails() {
     };
 
     socket.emit('update_status', id, statusNow[sale.status]);
+    socket.emit('update_order', id, statusNow[sale.status]);
   };
 
   return (

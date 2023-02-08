@@ -24,6 +24,7 @@ function SellerOrders() {
 
   useEffect(() => {
     socket.emit('join_room_order', parseInt(id, 10));
+    socket.emit('join_order_group');
 
     const getSales = async () => {
       const token = localStorage.getItem('token');
@@ -42,6 +43,17 @@ function SellerOrders() {
       const newSales = [...allSales, data];
       const newDate = newSales.map((e) => sequelizeData(e));
       setdate(newDate);
+    });
+
+    socket.on('order_updated', (orderId, newStatus) => {
+      console.log(orderId, newStatus);
+      const newAllSales = allSales.map((order) => {
+        if (order.id === parseInt(orderId, 10)) {
+          return { ...order, status: newStatus };
+        }
+        return order;
+      });
+      setAllSales(newAllSales);
     });
   }, [allSales, date]);
 
